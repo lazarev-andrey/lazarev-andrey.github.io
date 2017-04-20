@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>TSP</title>
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+  <link rel="stylesheet" href="dist/css/styles.css">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+</head>
+<body>
+
+  <div class="container">
+
+   <div class="fill pad" style="margin-top:50px;">
+	<div id="aco-canvas" class="center-block"></div>
+
+    <div class="hr vpad"></div>
+    <div class="col-lg-10 col-lg-offset-1">
+        <table>
+            <tr style="display:none;" class="aco-info">
+                <td>Iteration: </td><td id="iteration-info"></td>
+            </tr>
+            <tr style="display:none;" class="aco-info">
+                <td>Distance: </td><td id="best-distance"></td>
+            </tr>
+            <tr id="aco-buttons">
+                <td colspan="2"><button id="start-search-btn">Start</button> <button id="clear-graph">Stop</button></td>
+            </tr>
+        </table>
+        <br />
+        <table id="aco-params">
+            <tr>
+                <td colspan="2"><b>Info:</b></td>
+            </tr>
+
+            <tr>
+                <td>Ant Colony Size: 100</td>
+            </tr>
+
+            <tr>
+                <td>Max Iterations: 1000</td>
+            </tr>
+
+        </table>
+     <div class="clear"></div>
+    </div>
+</div>
+
+  </div> <!--container-->
+
+ 
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="tsp-aco.js"></script>
+</body>
+</html>

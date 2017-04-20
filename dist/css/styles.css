@@ -1,0 +1,43 @@
+* {
+  font: 14px 'Share Tech Mono', monospace;
+  transition: all 0.2s; }
+
+body {
+  overflow-y: auto;
+  padding-bottom: 50px;
+  width: 100%;
+  height: 100%;
+  /*background: linear-gradient(to top, #f7f7f7, white); */
+  background: white;
+  
+  }
+
+#thecanvas, #aco-canvas {
+  margin: 0 auto;
+  border: 10px solid #f7f7f7; }
+
+#txtAddCount {
+  width: 50px; }
+
+#divAlg {
+  margin-top: 20px;
+  width: 800px;
+  clear: both; }
+
+button {
+  padding: 2px;
+  border: 1px solid black;
+  outline: none;
+  box-shadow: none;
+  background-color: white; }
+  button:hover, button:active {
+    background-color: black;
+    color: white; }
+
+select, input {
+  padding: 2px;
+  border: 1px solid grey;
+  outline: none; }
+  select:hover, select:active, input:hover, input:active {
+    outline: none;
+    border-color: black; }
