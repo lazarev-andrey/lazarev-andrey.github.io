@@ -1,308 +1,88 @@
-<!DOCTYPE html> 
 <html>
-     <head>
-         <title>tasks№1,2,3,4</title> 
-         <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"> 
-  
-          <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"> 
-          <style type="text/css"> 
-              body { 
-                
-                  background-color: #000000; 
-   
-                  
-                  overflow: hidden; 
-              } 
-          </style> 
-          <script src="js/three.min.js"></script> 
-          <script src="js/Detector.js"></script> 
+<head>
+	<title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://rawgithub.com/drom/fourier/master/fourier.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+	<div class="content">
+		<div class="col-lg-6 col-md-12 col-sm-12 left">
+			<div class="row">
 
-      </head> 
-      <body>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<h5>Move slider to zero more coefficients</h5>
+				</div>
 
-          <div id="WebGLCanvas"> 
-   
-         <script> 
-              var scene; 
-   
-              var camera; 
-   
-              initializeScene(); 
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<input id="nrange" type="range" min="0" max="22"  step="1" value = "0">
+				</div>
 
-              renderScene(); 
-   
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<button class="btn btn-default" id="update" type="button" onclick="linkUpdates()">Generate new vector</button>
+				</div>
 
-              function initializeScene(){ 
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="complex-plane content">
+						<small>Complex vector</small>
+					</div>
+				</div>	
+			</div>
 
-                  if(Detector.webgl){ 
-                      renderer = new THREE.WebGLRenderer({antialias:true}); 
-   
-                  } else { 
-                      renderer = new THREE.CanvasRenderer(); 
-                  } 
-   
-                  renderer.setClearColor(0x000000, 1); 
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="complex-plane-result">
+						<small>Inverse transform of the vector</small>
+					</div>
+				</div>
+			</div>
 
-                  canvasWidth = window.innerWidth; 
-                  canvasHeight = window.innerHeight; 
+		</div>
 
-                  renderer.setSize(canvasWidth, canvasHeight); 
+		<div class="col-lg-6 col-md-12 col-sm-12 right">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<h5>Move slider to zero more coefficients</h5>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<input id="mrange" type="range" min="1" max="22"  step="1" value="0"> 
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<button class="btn btn-default" id="refresh" type="button" onclick="linkSineUpdates()">Update transform</button>
+				</div>
+			</div>
 
-                  document.getElementById("WebGLCanvas").appendChild(renderer.domElement); 
-   
-                  scene = new THREE.Scene(); 
-   
-                 camera = new THREE.PerspectiveCamera(45, canvasWidth / canvasHeight, 1, 100); 
-                 camera.position.set(0, 0, 10); 
-                 camera.lookAt(scene.position); 
-                 scene.add(camera); 
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="real-plane">
+						<small>Real-valued function</small>
+					</div>
+				</div>	
+			</div>
 
-                 //////////////////////////////////////////////
-  
-                 var squareGeometry = new THREE.Geometry(); 
-                 squareGeometry.vertices.push(new THREE.Vector3(-1.0,  0.7, 0.0)); 
-                 squareGeometry.vertices.push(new THREE.Vector3( 1.0,  0.7, 0.0)); 
-                 squareGeometry.vertices.push(new THREE.Vector3( 1.0, -1.0, 0.0)); 
-                 squareGeometry.vertices.push(new THREE.Vector3(-1.0, -1.0, 0.0)); 
-                 squareGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-                 squareGeometry.faces.push(new THREE.Face3(0, 2, 3)); 
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="real-plane-result">
+						<small>Inverse transform of the function</small>
+					</div>
+				</div>
+			</div>
 
+		</div>
 
-                 var secondSquareGeometry = new THREE.Geometry(); 
-                 secondSquareGeometry.vertices.push(new THREE.Vector3(-0.8, 0.4, 0.0)); 
-                 secondSquareGeometry.vertices.push(new THREE.Vector3( 0.8, 0.4, 0.0)); 
-                 secondSquareGeometry.vertices.push(new THREE.Vector3( 0.8, -0.8, 0.0)); 
-                 secondSquareGeometry.vertices.push(new THREE.Vector3(-0.8, -0.8, 0.0)); 
-                 secondSquareGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-                 secondSquareGeometry.faces.push(new THREE.Face3(0, 2, 3)); 
-
-
-                 var thirdSquareGeometry = new THREE.Geometry(); 
-                 thirdSquareGeometry.vertices.push(new THREE.Vector3(-0.5, 0.25, 0.0)); 
-                 thirdSquareGeometry.vertices.push(new THREE.Vector3( 0.5, 0.25, 0.0)); 
-                 thirdSquareGeometry.vertices.push(new THREE.Vector3( 0.5, -0.5, 0.0)); 
-                 thirdSquareGeometry.vertices.push(new THREE.Vector3(-0.5, -0.5, 0.0)); 
-                 thirdSquareGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-                 thirdSquareGeometry.faces.push(new THREE.Face3(0, 2, 3)); 
-         
-
-                 var triangleGeometry = new THREE.Geometry(); 
-                 triangleGeometry.vertices.push(new THREE.Vector3( 0.0, 0.1, 0.0)); 
-                 triangleGeometry.vertices.push(new THREE.Vector3(-0.15, -0.15, 0.0)); 
-                 triangleGeometry.vertices.push(new THREE.Vector3( 0.15, -0.15, 0.0)); 
-                 triangleGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-
-
-                 var rectGeometry = new THREE.Geometry(); 
-                 rectGeometry.vertices.push(new THREE.Vector3(-0.08, 0.08, 0.0)); 
-                 rectGeometry.vertices.push(new THREE.Vector3( 0.08, 0.08, 0.0)); 
-                 rectGeometry.vertices.push(new THREE.Vector3( 0.08, -0.12, 0.0)); 
-                 rectGeometry.vertices.push(new THREE.Vector3(-0.08, -0.12, 0.0)); 
-                 rectGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-                 rectGeometry.faces.push(new THREE.Face3(0, 2, 3)); 
-  
-
-                 var squareMaterial = new THREE.MeshBasicMaterial({ 
-                    color:'yellow', 
-                    side:THREE.DoubleSide 
-                 }); 
-
-                 var secondSquareMaterial = new THREE.MeshBasicMaterial({ 
-                    color:'red', 
-                    side:THREE.DoubleSide 
-                 }); 
-
-                 var thirdSquareMaterial = new THREE.MeshBasicMaterial({ 
-                    color:'green', 
-                    side:THREE.DoubleSide 
-                 }); 
-
-                 var triangleMaterial = new THREE.MeshBasicMaterial({ 
-                     color:'blue', 
-                    side:THREE.DoubleSide 
-                 }); 
-
-                 var rectMaterial = new THREE.MeshBasicMaterial({ 
-                     color:'blue', 
-                    side:THREE.DoubleSide 
-                 }); 
-
-
-                 var squareMesh = new THREE.Mesh(squareGeometry, squareMaterial); 
-                 squareMesh.position.set(-3.0, 0.6, 4.0); 
-                scene.add(squareMesh); 
-
-                var secondSquareMesh = new THREE.Mesh(secondSquareGeometry, secondSquareMaterial); 
-                 secondSquareMesh.position.set(-3.0, 0.68, 4.0); 
-                scene.add(secondSquareMesh); 
-
-                var thirdSquareMesh = new THREE.Mesh(thirdSquareGeometry, thirdSquareMaterial); 
-                 thirdSquareMesh.position.set(-3.0, 0.6, 4.0); 
-                scene.add(thirdSquareMesh); 
-
-                var triangleMesh = new THREE.Mesh(triangleGeometry, triangleMaterial); 
-                 triangleMesh.position.set(-3.0, 0.6, 4.0); 
-                 scene.add(triangleMesh); 
-
-                var rectMesh = new THREE.Mesh(rectGeometry, rectMaterial); 
-                 rectMesh.position.set(-3.0, 0.4, 4.0); 
-                 scene.add(rectMesh); 
-
-                 //////////////////////////////////////////////
-
-                 var anotherSquareGeometry = new THREE.Geometry(); 
-                 anotherSquareGeometry.vertices.push(new THREE.Vector3(-1.0,  0.5, 0.0)); 
-                 anotherSquareGeometry.vertices.push(new THREE.Vector3( 1.0,  0.5, 0.0)); 
-                 anotherSquareGeometry.vertices.push(new THREE.Vector3( 1.0, -1.0, 0.0)); 
-                 anotherSquareGeometry.vertices.push(new THREE.Vector3(-1.0, -1.0, 0.0)); 
-                 anotherSquareGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-                 anotherSquareGeometry.faces.push(new THREE.Face3(0, 2, 3)); 
-
-                 var radius = 0.7;
-                 var segments = 32; 
-                 var circleGeometry = new THREE.CircleGeometry( radius, segments );    
-
-                 var anotherTriangleGeometry = new THREE.Geometry(); 
-                 anotherTriangleGeometry.vertices.push(new THREE.Vector3( 0.0, 0.7, 0.0)); 
-                 anotherTriangleGeometry.vertices.push(new THREE.Vector3(-0.9, -0.7, 0.0)); 
-                 anotherTriangleGeometry.vertices.push(new THREE.Vector3( 0.9, -0.7, 0.0)); 
-                 anotherTriangleGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-
-                 var anotherSquareMaterial = new THREE.MeshBasicMaterial({ 
-                    color:'grey', 
-                    side:THREE.DoubleSide 
-                 }); 
-
-                 var circleMaterial = new THREE.MeshBasicMaterial({
-                 color: 'red',
-                });
-
-                 var anotherTriangleMaterial = new THREE.MeshBasicMaterial({ 
-                    color:'lightgreen', 
-                    side:THREE.DoubleSide 
-                 }); 
-
-                 var anotherSquareMesh = new THREE.Mesh(anotherSquareGeometry, anotherSquareMaterial); 
-                 anotherSquareMesh.position.set( 0.0, 0.85, 4.0); 
-                scene.add(anotherSquareMesh); 
-
-
-                var circleMesh = new THREE.Mesh( circleGeometry, circleMaterial );
-                circleMesh.position.set(0.0, 1.0, 4.0); 
-                scene.add( circleMesh );
-
-                var anotherTriangleMesh = new THREE.Mesh(anotherTriangleGeometry, anotherTriangleMaterial); 
-                 anotherTriangleMesh.position.set(0.0, 0.3, 4.0); 
-                 scene.add(anotherTriangleMesh); 
-
-                //////////////////////////////////////////////
-
-                var crownOneRadius = 0.3;
-                var crownTwoRadius = 0.2;
-                var crownSegments = 32; 
-
-                var crownOneGeometry = new THREE.CircleGeometry( crownOneRadius, crownSegments );    
-                var crownTwoGeometry = new THREE.CircleGeometry( crownTwoRadius, crownSegments );     
-
-                var trunkOneGeometry = new THREE.Geometry(); 
-                 trunkOneGeometry.vertices.push(new THREE.Vector3(-0.05,  0.5, 0.0)); 
-                 trunkOneGeometry.vertices.push(new THREE.Vector3( 0.05,  0.5, 0.0)); 
-                 trunkOneGeometry.vertices.push(new THREE.Vector3( 0.05, -1.0, 0.0)); 
-                 trunkOneGeometry.vertices.push(new THREE.Vector3(-0.05, -1.0, 0.0)); 
-                 trunkOneGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-                 trunkOneGeometry.faces.push(new THREE.Face3(0, 2, 3)); 
-
-                var trunkTwoGeometry = new THREE.Geometry(); 
-                 trunkTwoGeometry.vertices.push(new THREE.Vector3(-0.05,  0.15, 0.0)); 
-                 trunkTwoGeometry.vertices.push(new THREE.Vector3( 0.05,  0.15, 0.0)); 
-                 trunkTwoGeometry.vertices.push(new THREE.Vector3( 0.05, -1.0, 0.0)); 
-                 trunkTwoGeometry.vertices.push(new THREE.Vector3(-0.05, -1.0, 0.0)); 
-                 trunkTwoGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-                 trunkTwoGeometry.faces.push(new THREE.Face3(0, 2, 3)); 
-
-                 var crownMaterial = new THREE.MeshBasicMaterial({
-                 color: 'green',
-                });
-                
-                var trunkMaterial = new THREE.MeshBasicMaterial({ 
-                    color:'lightgrey', 
-                    side:THREE.DoubleSide 
-                 }); 
-
-                var crownOneMesh = new THREE.Mesh( crownOneGeometry, crownMaterial );
-                crownOneMesh.position.set(2.1, 1.2, 4.0); 
-                scene.add( crownOneMesh );
-
-                var crownTwoMesh = new THREE.Mesh( crownTwoGeometry, crownMaterial );
-                crownTwoMesh.position.set(2.9, 0.8, 4.0); 
-                scene.add( crownTwoMesh );
-
-                var trunkOneMesh = new THREE.Mesh(trunkOneGeometry, trunkMaterial); 
-                 trunkOneMesh.position.set(2.1, 0.6, 4.0); 
-                 scene.add(trunkOneMesh); 
-
-                var trunkTwoMesh = new THREE.Mesh(trunkTwoGeometry, trunkMaterial); 
-                 trunkTwoMesh.position.set(2.9, 0.6, 4.0); 
-                 scene.add(trunkTwoMesh); 
-
-                
-              //////////////////////////////////////////////
-
-               var trunkThreeGeometry = new THREE.Geometry(); 
-                 trunkThreeGeometry.vertices.push(new THREE.Vector3(-0.05,  0.15, 0.0)); 
-                 trunkThreeGeometry.vertices.push(new THREE.Vector3( 0.05,  0.15, 0.0)); 
-                 trunkThreeGeometry.vertices.push(new THREE.Vector3( 0.05, -1.0, 0.0)); 
-                 trunkThreeGeometry.vertices.push(new THREE.Vector3(-0.05, -1.0, 0.0)); 
-                 trunkThreeGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-                 trunkThreeGeometry.faces.push(new THREE.Face3(0, 2, 3)); 
-
-
-                var firOneTriangleGeometry = new THREE.Geometry(); 
-                 firOneTriangleGeometry.vertices.push(new THREE.Vector3( 0.0, 0.3, 0.0)); 
-                 firOneTriangleGeometry.vertices.push(new THREE.Vector3(-0.4, -0.3, 0.0)); 
-                 firOneTriangleGeometry.vertices.push(new THREE.Vector3( 0.4, -0.3, 0.0)); 
-                 firOneTriangleGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-
-                var firTwoTriangleGeometry = new THREE.Geometry(); 
-                 firTwoTriangleGeometry.vertices.push(new THREE.Vector3( 0.0, 0.25, 0.0)); 
-                 firTwoTriangleGeometry.vertices.push(new THREE.Vector3(-0.35, -0.25, 0.0)); 
-                 firTwoTriangleGeometry.vertices.push(new THREE.Vector3( 0.35, -0.25, 0.0)); 
-                 firTwoTriangleGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-
-                var firThreeTriangleGeometry = new THREE.Geometry(); 
-                 firThreeTriangleGeometry.vertices.push(new THREE.Vector3( 0.0, 0.2, 0.0)); 
-                 firThreeTriangleGeometry.vertices.push(new THREE.Vector3(-0.3, -0.2, 0.0)); 
-                 firThreeTriangleGeometry.vertices.push(new THREE.Vector3( 0.3, -0.2, 0.0)); 
-                 firThreeTriangleGeometry.faces.push(new THREE.Face3(0, 1, 2)); 
-
-
-                var firMaterial = new THREE.MeshBasicMaterial({ 
-                     color:'green', 
-                    side:THREE.DoubleSide 
-                 }); 
-          
-                var trunkThreeMesh = new THREE.Mesh(trunkThreeGeometry, trunkMaterial); 
-                 trunkThreeMesh.position.set(3.8, 0.6, 4.0); 
-                 scene.add(trunkThreeMesh); 
-
-                var firOneMesh = new THREE.Mesh(firOneTriangleGeometry, firMaterial); 
-                 firOneMesh.position.set(3.8, 0.2, 4.0); 
-                 scene.add(firOneMesh); 
-
-                var firTwoMesh = new THREE.Mesh(firTwoTriangleGeometry, firMaterial); 
-                 firTwoMesh.position.set(3.8, 0.5, 4.0); 
-                 scene.add(firTwoMesh); 
-
-                var firThreeMesh = new THREE.Mesh(firThreeTriangleGeometry, firMaterial); 
-                 firThreeMesh.position.set(3.8, 0.8, 4.0); 
-                 scene.add(firThreeMesh); 
-                          
-           } 
-  
-            function renderScene(){ 
-                renderer.render(scene, camera); 
-            } 
-
-        </script> 
-     </body> 
- </html>
+	</div>
+	</div>
+</body>
+<!--<script src="js/fourier.js"></script>-->
+<script src="js/complex.js"></script>
+<script src="js/real.js"></script>
+<script src="js/transform-complex.js"></script>
+<script src="js/transform-real.js"></script>
+</html>
