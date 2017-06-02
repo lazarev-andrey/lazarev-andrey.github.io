@@ -1,5 +1,5 @@
 (function(){
-var extent = 5,
+var extent = 50,
 	width = 400, height = 400,
 	margin = {top:10, left:10, bottom:10, right:10},
 	plotWidth = width-(margin.left+margin.right),
@@ -43,9 +43,29 @@ update();
 d3.select("#refresh").on("click", update);
 
 function update(){
-	xArray = [-5, -4.5, -4, -3.5, -3, -2.5, -2, -1.5, -1, -0.5, 0, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
-    yArray = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2];
 
+    var tempNeg = [],
+        tempPos = [];
+    for ( var i=0, n=50; i<=n; i+=2 ){     
+        tempNeg.push((i)*(-1));
+    };
+
+    for (var j=0, n=50; j<=n; j+=2){
+            tempPos.push(j);
+        };
+    // console.log(tempNeg.reverse().concat(tempPos));
+    var tempConstNeg = [];
+        tempConstNeg.length = 25;
+        tempConstNeg.fill(-20);
+        console.log(tempConstNeg);
+    var tempConstPos = [];
+        tempConstPos.length = 25;    
+        tempConstPos.fill(20);
+        
+	// xArray = [-5, -4.5, -4, -3.5, -3, -2.5, -2, -1.5, -1, -0.5, 0, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
+    xArray = tempNeg.reverse().concat(tempPos);
+    yArray = tempConstPos.concat(tempConstNeg);
+    // yArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 	// for (var i = xArray[0], l = xArray.length; i<l; i++) {
 	// 	yArray.push(Math.sin(i));
 	// }
@@ -62,6 +82,7 @@ function update(){
   n8 = {r: xArray[7], i: yArray[7]},
   n9 = {r: xArray[8], i: yArray[8]},
   n10 = {r: xArray[9], i: yArray[9]},
+
   n11 = {r: xArray[10], i: yArray[10]},
   n12 = {r: xArray[11], i: yArray[11]},
   n13 = {r: xArray[12], i: yArray[12]},
@@ -72,8 +93,39 @@ function update(){
   n18 = {r: xArray[17], i: yArray[17]},
   n19 = {r: xArray[18], i: yArray[18]},
   n20 = {r: xArray[19], i: yArray[19]},
+
   n21 = {r: xArray[20], i: yArray[20]},
   n22 = {r: xArray[21], i: yArray[21]},
+  n23 = {r: xArray[22], i: yArray[22]},
+  n24 = {r: xArray[23], i: yArray[23]},
+  n25 = {r: xArray[24], i: yArray[24]},
+  n26 = {r: xArray[25], i: yArray[25]},
+  n27 = {r: xArray[26], i: yArray[26]},
+  n28 = {r: xArray[27], i: yArray[27]},
+  n29 = {r: xArray[28], i: yArray[28]},
+  n30 = {r: xArray[29], i: yArray[29]},
+
+  n31 = {r: xArray[30], i: yArray[30]},
+  n32 = {r: xArray[31], i: yArray[31]},
+  n33 = {r: xArray[32], i: yArray[32]},
+  n34 = {r: xArray[33], i: yArray[33]},
+  n35 = {r: xArray[34], i: yArray[34]},
+  n36 = {r: xArray[35], i: yArray[35]},
+  n37 = {r: xArray[36], i: yArray[36]},
+  n38 = {r: xArray[37], i: yArray[37]},
+  n39 = {r: xArray[38], i: yArray[38]},
+  n40 = {r: xArray[39], i: yArray[39]},
+
+  n41 = {r: xArray[40], i: yArray[40]},
+  n42 = {r: xArray[41], i: yArray[41]},
+  n43 = {r: xArray[42], i: yArray[42]},
+  n44 = {r: xArray[43], i: yArray[43]},  
+  n45 = {r: xArray[44], i: yArray[44]},
+  n46 = {r: xArray[45], i: yArray[45]},
+  n47 = {r: xArray[46], i: yArray[46]},
+  n48 = {r: xArray[47], i: yArray[47]},
+  n49 = {r: xArray[48], i: yArray[48]},
+  n50 = {r: xArray[49], i: yArray[49]},
 	];
 
 
@@ -88,6 +140,7 @@ function update(){
     { p:n8, id:'n8' },
     { p:n9, id:'n9' },
     { p:n10, id:'n10' },
+
     { p:n11, id:'n11' },
     { p:n12, id:'n12' },
     { p:n13, id:'n13' },
@@ -98,16 +151,47 @@ function update(){
     { p:n18, id:'n18' },
     { p:n19, id:'n19' },
     { p:n20, id:'n20' },
+
     { p:n21, id:'n21' },
     { p:n22, id:'n22' },
+    { p:n23, id:'n23' },
+    { p:n24, id:'n24' },
+    { p:n25, id:'n25' },
+    { p:n26, id:'n26' },
+    { p:n27, id:'n27' },
+    { p:n28, id:'n28' },
+    { p:n29, id:'n29' },
+    { p:n30, id:'n30' },
+
+    { p:n31, id:'n31' },
+    { p:n32, id:'n32' },
+    { p:n33, id:'n33' },
+    { p:n34, id:'n34' },
+    { p:n35, id:'n35' },
+    { p:n36, id:'n36' },
+    { p:n37, id:'n37' },
+    { p:n38, id:'n38' },
+    { p:n39, id:'n39' },
+    { p:n40, id:'n40' },
+
+    { p:n41, id:'n41' },
+    { p:n42, id:'n42' },
+    { p:n43, id:'n43' },
+    { p:n44, id:'n44' },
+    { p:n45, id:'n45' },
+    { p:n46, id:'n46' },
+    { p:n47, id:'n47' },
+    { p:n48, id:'n48' },
+    { p:n49, id:'n49' },
+    { p:n50, id:'n50' },
 	];
 
 	points.selectAll('circle').data(realPointsData, function(d){return d.id})
 		.enter()
 			.append('circle')
 			.attr({
-				'id':function(d){ return d.id + '-p'; },
-				'r':3
+				'id':function(d){ return 'n'; },
+				'r':2
 			}).filter(function(d){
 				return d.id != 'result';
 			})
