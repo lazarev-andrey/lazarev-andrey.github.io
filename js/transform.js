@@ -1,3 +1,5 @@
+inputArray = [-1,1,-1,1,-1,1,-1,1]
+
 function dft( inputArray ) {
     var inputArray;
     var len = inputArray.length;
@@ -12,6 +14,7 @@ function dft( inputArray ) {
    }
    output.push(real, imag)
  } 
+console.log(output);
 return output;
 };
 
@@ -28,6 +31,7 @@ for (var k = 0; k < len; k++) {
     }
     out = out/len;
     inverseOutput.push(out);
-    }
+}
+console.log(inverseOutput)
 return inverseOutput;
 };

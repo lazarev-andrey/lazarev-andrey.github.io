@@ -1,6 +1,6 @@
 (function(){
-var extent = 50,
-	width = 400, height = 400,
+var extent = 130,
+	width = 800, height = 800,
 	margin = {top:10, left:10, bottom:10, right:10},
 	plotWidth = width-(margin.left+margin.right),
 	plotHeight = height-(margin.top+margin.bottom);
@@ -20,8 +20,8 @@ var yAxis = d3.svg.axis().scale(scaleY)
 
 var svg = d3.select('.real-plane-result').append('svg')
 	.attr({
-		width:400,
-		height:400
+		width:800,
+		height:800
 	})
 	.append('g')
 	.attr('transform','translate('+margin.left+','+margin.top+')');
@@ -49,7 +49,7 @@ document.getElementById('refresh').onclick = function() {
 function update(){
     
     //by default Uint8Array contains all zeroes
-    var zeroesFilledArray = new Uint8Array(100); 
+    var zeroesFilledArray = new Uint8Array(128); 
     console.log(zeroesFilledArray);
 
     fourier2DArray = fourier.dft(yArray, zeroesFilledArray);
@@ -59,8 +59,8 @@ function update(){
 (function(){
 
     m = document.getElementById('mrange').value;
-    zeroedYarray = fourier1DArray.slice(0, 50),
-    zeroedComplexArray = fourier1DArray.slice(50),
+    zeroedYarray = fourier1DArray.slice(0, 128),
+    zeroedComplexArray = fourier1DArray.slice(128),
     // xTemp = zeroedXarray
     //     .map(function (_, i) { return i; })
     //     .sort(function (a, b) { return Math.abs(zeroedXarray[a]) - Math.abs(zeroedXarray[b]); })
@@ -78,7 +78,7 @@ function update(){
 var restored2DArray = fourier.idft(zeroedYarray, zeroedComplexArray);
 console.log()
 var restored1DArray = Array.prototype.concat.apply([], restored2DArray);
-var restoredyArray = restored1DArray.slice(0, 50);
+var restoredyArray = restored1DArray.slice(0, 128);
 // var restoredyArray = restored1DArray.slice(50);
 var transformedRealPointsValues = [
     g1 = {r: xArray[0], i: restoredyArray[0]},
@@ -135,6 +135,92 @@ var transformedRealPointsValues = [
     g48 = {r: xArray[47], i: restoredyArray[47]},
     g49 = {r: xArray[48], i: restoredyArray[48]},
     g50 = {r: xArray[49], i: restoredyArray[49]},
+
+  n51 = {r: xArray[50], i: restoredyArray[50]},
+  n52 = {r: xArray[51], i: restoredyArray[51]},
+  n53 = {r: xArray[52], i: restoredyArray[52]},
+  n54 = {r: xArray[53], i: restoredyArray[53]},
+  n55 = {r: xArray[54], i: restoredyArray[54]},
+  n56 = {r: xArray[55], i: restoredyArray[55]},
+  n57 = {r: xArray[56], i: restoredyArray[56]},
+  n58 = {r: xArray[57], i: restoredyArray[57]},
+  n59 = {r: xArray[58], i: restoredyArray[58]},
+  n60 = {r: xArray[59], i: restoredyArray[59]},
+
+  n61 = {r: xArray[60], i: restoredyArray[60]},
+  n62 = {r: xArray[61], i: restoredyArray[61]},
+  n63 = {r: xArray[62], i: restoredyArray[62]},
+  n64 = {r: xArray[63], i: restoredyArray[63]},
+  n65 = {r: xArray[64], i: restoredyArray[64]},
+  n66 = {r: xArray[65], i: restoredyArray[65]},
+  n67 = {r: xArray[66], i: restoredyArray[66]},
+  n68 = {r: xArray[67], i: restoredyArray[67]},
+  n69 = {r: xArray[68], i: restoredyArray[68]},
+  n70 = {r: xArray[69], i: restoredyArray[69]},
+
+  n71 = {r: xArray[70], i: restoredyArray[70]},
+  n72 = {r: xArray[71], i: restoredyArray[71]},
+  n73 = {r: xArray[72], i: restoredyArray[72]},
+  n74 = {r: xArray[73], i: restoredyArray[73]},
+  n75 = {r: xArray[74], i: restoredyArray[74]},
+  n76 = {r: xArray[75], i: restoredyArray[75]},
+  n77 = {r: xArray[76], i: restoredyArray[76]},
+  n78 = {r: xArray[77], i: restoredyArray[77]},
+  n79 = {r: xArray[78], i: restoredyArray[78]},
+  n80 = {r: xArray[79], i: restoredyArray[79]},
+
+  n81 = {r: xArray[80], i: restoredyArray[80]},
+  n82 = {r: xArray[81], i: restoredyArray[81]},
+  n83 = {r: xArray[82], i: restoredyArray[82]},
+  n84 = {r: xArray[83], i: restoredyArray[83]},
+  n85 = {r: xArray[84], i: restoredyArray[84]},
+  n86 = {r: xArray[85], i: restoredyArray[85]},
+  n87 = {r: xArray[86], i: restoredyArray[86]},
+  n88 = {r: xArray[87], i: restoredyArray[87]},
+  n89 = {r: xArray[88], i: restoredyArray[88]},
+  n90 = {r: xArray[89], i: restoredyArray[89]},
+
+  n91 = {r: xArray[90], i: restoredyArray[90]},
+  n92 = {r: xArray[91], i: restoredyArray[91]},
+  n93 = {r: xArray[92], i: restoredyArray[92]},
+  n94 = {r: xArray[93], i: restoredyArray[93]},
+  n95 = {r: xArray[94], i: restoredyArray[94]},
+  n96 = {r: xArray[95], i: restoredyArray[95]},
+  n97 = {r: xArray[96], i: restoredyArray[96]},
+  n98 = {r: xArray[97], i: restoredyArray[97]},
+  n99 = {r: xArray[98], i: restoredyArray[98]},
+  n100 = {r: xArray[99], i: restoredyArray[99]},  
+
+  n101 = {r: xArray[100], i: restoredyArray[100]},
+  n102 = {r: xArray[101], i: restoredyArray[101]},
+  n103 = {r: xArray[102], i: restoredyArray[102]},
+  n104 = {r: xArray[103], i: restoredyArray[103]},
+  n105 = {r: xArray[104], i: restoredyArray[104]},
+  n106 = {r: xArray[105], i: restoredyArray[105]},
+  n107 = {r: xArray[106], i: restoredyArray[106]},
+  n108 = {r: xArray[107], i: restoredyArray[107]},
+  n109 = {r: xArray[108], i: restoredyArray[108]},
+  n110 = {r: xArray[109], i: restoredyArray[109]},
+
+  n111 = {r: xArray[110], i: restoredyArray[110]},
+  n112 = {r: xArray[111], i: restoredyArray[111]},
+  n113 = {r: xArray[112], i: restoredyArray[112]},
+  n114 = {r: xArray[113], i: restoredyArray[113]},
+  n115 = {r: xArray[114], i: restoredyArray[114]},
+  n116 = {r: xArray[115], i: restoredyArray[115]},
+  n117 = {r: xArray[116], i: restoredyArray[116]},
+  n118 = {r: xArray[117], i: restoredyArray[117]},
+  n119 = {r: xArray[118], i: restoredyArray[118]},
+  n120 = {r: xArray[119], i: restoredyArray[119]},  
+
+  n121 = {r: xArray[120], i: restoredyArray[120]},
+  n122 = {r: xArray[121], i: restoredyArray[121]},
+  n123 = {r: xArray[122], i: restoredyArray[122]},
+  n124 = {r: xArray[123], i: restoredyArray[123]},  
+  n125 = {r: xArray[124], i: restoredyArray[124]},
+  n126 = {r: xArray[125], i: restoredyArray[125]},
+  n127 = {r: xArray[126], i: restoredyArray[126]},
+  n128 = {r: xArray[127], i: restoredyArray[127]},  
   ]
 
 
@@ -194,6 +280,92 @@ var transformedRealPointsValues = [
     { p:g48, id:'n48' },
     { p:g49, id:'n49' },
     { p:g50, id:'n50' },
+
+    { p:n51, id:'n51' },
+    { p:n52, id:'n52' },
+    { p:n53, id:'n53' },
+    { p:n54, id:'n54' },
+    { p:n55, id:'n55' },
+    { p:n56, id:'n56' },
+    { p:n57, id:'n57' },
+    { p:n58, id:'n58' },
+    { p:n59, id:'n59' },
+    { p:n60, id:'n60' },
+
+    { p:n61, id:'n61' },
+    { p:n62, id:'n62' },
+    { p:n63, id:'n63' },
+    { p:n128, id:'n128' },
+    { p:n65, id:'n65' },
+    { p:n66, id:'n66' },
+    { p:n67, id:'n67' },
+    { p:n68, id:'n68' },
+    { p:n69, id:'n69' },
+    { p:n70, id:'n70' },
+
+    { p:n71, id:'n71' },
+    { p:n72, id:'n72' },
+    { p:n73, id:'n73' },
+    { p:n74, id:'n74' },
+    { p:n75, id:'n75' },
+    { p:n76, id:'n76' },
+    { p:n77, id:'n77' },
+    { p:n78, id:'n78' },
+    { p:n79, id:'n79' },
+    { p:n80, id:'n80' },
+
+    { p:n81, id:'n81' },
+    { p:n82, id:'n82' },
+    { p:n83, id:'n83' },
+    { p:n84, id:'n84' },
+    { p:n85, id:'n85' },
+    { p:n86, id:'n86' },
+    { p:n87, id:'n87' },
+    { p:n88, id:'n88' },
+    { p:n89, id:'n89' },
+    { p:n90, id:'n90' },
+
+    { p:n91, id:'n91' },
+    { p:n92, id:'n92' },
+    { p:n93, id:'n93' },
+    { p:n94, id:'n94' },
+    { p:n95, id:'n95' },
+    { p:n96, id:'n96' },
+    { p:n97, id:'n97' },
+    { p:n98, id:'n98' },
+    { p:n99, id:'n99' },
+    { p:n100, id:'n100' },
+
+    { p:n101, id:'n101' },
+    { p:n102, id:'n102' },
+    { p:n103, id:'n103' },
+    { p:n104, id:'n104' },
+    { p:n105, id:'n105' },
+    { p:n106, id:'n106' },
+    { p:n107, id:'n107' },
+    { p:n108, id:'n108' },
+    { p:n109, id:'n109' },
+    { p:n110, id:'n110' },
+
+    { p:n111, id:'n111' },
+    { p:n112, id:'n112' },
+    { p:n113, id:'n113' },
+    { p:n114, id:'n114' },
+    { p:n115, id:'n115' },
+    { p:n116, id:'n116' },
+    { p:n117, id:'n117' },
+    { p:n118, id:'n118' },
+    { p:n119, id:'n119' },
+    { p:n120, id:'n120' },
+
+    { p:n121, id:'n121' },
+    { p:n122, id:'n122' },
+    { p:n123, id:'n123' },
+    { p:n124, id:'n124' },
+    { p:n125, id:'n125' },
+    { p:n126, id:'n126' },
+    { p:n127, id:'n127' },
+    { p:n128, id:'n128' },
 	];
 
   console.log(transformedRealPointsData[0]);
