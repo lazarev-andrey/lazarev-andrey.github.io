@@ -1,5 +1,5 @@
 (function(){
-var extent = 130,
+var extent = 64,
 	width = 800, height = 800,
 	margin = {top:10, left:10, bottom:10, right:10},
 	plotWidth = width-(margin.left+margin.right),
@@ -46,25 +46,27 @@ function update(){
 
     var tempNeg = [],
         tempPos = [];
-    for ( var i=0, n=128; i<=n; i+=2 ){     
+    for ( var i=63, n=0; n<=i; i-- ){     
+        
         tempNeg.push((i)*(-1));
     };
+    console.log(tempNeg, tempNeg.length);
 
-    for (var j=0, n=128; j<=n; j+=2){
+    for (var j=0, n=64; j<n; j++){
+        
             tempPos.push(j);
         };
-    // console.log(tempNeg.reverse().concat(tempPos));
+    console.log(tempPos, tempPos.length);
     var tempConstNeg = [];
         tempConstNeg.length = 64;
         tempConstNeg.fill(-20);
-        console.log(tempConstNeg);
     var tempConstPos = [];
         tempConstPos.length = 64;    
         tempConstPos.fill(20);
         
-	// xArray = [-5, -4.5, -4, -3.5, -3, -2.5, -2, -1.5, -1, -0.5, 0, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
-    xArray = tempNeg.reverse().concat(tempPos);
-    yArray = tempConstPos.concat(tempConstNeg);
+    xArray = tempNeg.concat(tempPos);
+    yArray = tempConstNeg.concat(tempConstPos);
+    console.log(yArray);
     // yArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 	// for (var i = xArray[0], l = xArray.length; i<l; i++) {
 	// 	yArray.push(Math.sin(i));
@@ -72,7 +74,7 @@ function update(){
 	// console.log(yArray);
 
   var realPointsValues = [
-  n1 = {r: xArray[0], i: yArray[0]},
+ n1 = {r: xArray[0], i: yArray[0]},
   n2 = {r: xArray[1], i: yArray[1]},
   n3 = {r: xArray[2], i: yArray[2]},
   n4 = {r: xArray[3], i: yArray[3]},
@@ -363,7 +365,7 @@ function update(){
 			.append('circle')
 			.attr({
 				'id':function(d){ return 'n'; },
-				'r':2
+				'r':3
 			}).filter(function(d){
 				return d.id != 'result';
 			})
