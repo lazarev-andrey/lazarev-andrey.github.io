@@ -45,6 +45,8 @@ document.getElementById('update').onclick = function() {
    update();
 };
 
+d3.select("#updateTransform").on("click", update);
+
 function update(){
     var fourier2DArray = fourier.dftSimple(realArray, imagArray);
     var fourier1DArray = Array.prototype.concat.apply([], fourier2DArray);
