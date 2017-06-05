@@ -353,7 +353,7 @@ function update(){
 			.append('circle')
 			.attr({
 				'id':function(d){ return 'n'; },
-				'r':2
+				'r':3
 			}).filter(function(d){
 				return d.id != 'result';
 			})
