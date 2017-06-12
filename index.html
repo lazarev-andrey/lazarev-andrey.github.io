@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title></title>
+	<title>Discrete Fourier Transform</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -11,35 +11,54 @@
 <body>
 	<div class="container">
 	<div class="content">
-		<div class="col-lg-12 col-md-12 col-sm-12 left">
-			<div class="row">
 
+<div class="screen" id="top">
+	<div class="col-lg-6 col-lg-offset-3">
+		<h1 class="text-center">Discrete Fourier Transform</h1>
+		<h3 class="text-center">Dicrete Fourier Transform(DFT) and<br>Inverse Dicrete Fourier Transform(IDFT) can be descibed respectively as:</h2>
+		<img class="center-block fft-image" src="img/fft.png" alt="">
+		<h3 class="text-center">The result of DFT are complex-valued Fourier coefficients using which the original vector or function can be restored in the process of IDFT. If some Fourier coefficients are zeroed the restored vector or function would differ from the original as you can see by clicking the links below:</h2>
+		<h3 class="text-center"><a href="#complex">Complex DFT and IDFT</a></h3>
+		<h3 class="text-center"><a href="#real">Real DFT and IDFT</a></h3>
+	</div>
+</div>
+
+<div class="screen" id="complex">
+		<div class="col-lg-10 col-lg-offset-1">
+			<h3 class="text-center">Complex DFT and IDFT</h3>
+			<div class="row">
 				<div class="col-lg-4 col-md-4 col-sm-4">
 					<h5>Move slider to zero more coefficients</h5>
 				</div>
 
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<input id="nrange" type="range" min="0" max="128"  step="1" value = "0">
+				<div class="col-lg-8 col-md-8 col-sm-8">
+					<input id="nrange" type="range" min="0" max="50"  step="1" value = "0">
 				</div>
-
-				<div class="col-lg-2 col-md-2 col-sm-2">
-					<button class="btn btn-default" id="update" type="button" onclick="linkUpdates()">Generate new vector</button>
-				</div>
-
-				<div class="col-lg-2 col-md-2 col-sm-2">
-					<button class="btn btn-default" id="updateTransform" type="button">Update transform</button>
-				</div>
-
 			</div>
-			
+
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<button class="btn btn-default center-block" id="update" type="button" onclick="linkUpdates()">Generate new vector</button>
+				</div>
+
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<button class="btn btn-default center-block" id="updateTransform" type="button">Update transform</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-lg-6 col-md-6 col-sm-12 left">		
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="complex-plane content">
-						<small>Complex vector</small>
+						<small>Random complex vector</small>
 					</div>
 				</div>	
 			</div>
+		</div>
 
+		<div class="col-lg-6 col-md-6 col-sm-12 right">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="complex-plane-result">
@@ -47,30 +66,51 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 
-		<div class="col-lg-12 col-md-12 col-sm-12 right">
+		<div class="row">
+			<div class="col-lg-12 links">
+				<p><a class="text-center" href="#top">Go to top</a></p>
+				<p><a class="text-center" href="#real">Real DFT and IDFT</a></p>
+			</div>
+		</div>
+</div>
+
+<div class="screen" id="real">
+		<div class="col-lg-10 col-lg-offset-1">
+			<h3 class="text-center">Real DFT and IDFT</h3>
 			<div class="row">
 				<div class="col-lg-4 col-md-4 col-sm-4">
 					<h5>Move slider to zero more coefficients</h5>
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<input id="mrange" type="range" min="0" max="128"  step="1" value="0"> 
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<button class="btn btn-default" id="refresh" type="button" onclick="linkSineUpdates()">Update transform</button>
+
+				<div class="col-lg-8 col-md-8 col-sm-8">
+					<input id="mrange" type="range" min="0" max="50"  step="1" value = "0">
 				</div>
 			</div>
 
 			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6">
+				</div>
+
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<button class="btn btn-default center-block" id="refresh" type="button" onclick="linkSineUpdates()">Update transform</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-lg-6 col-md-6 col-sm-12 left">		
+			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="real-plane">
-						<small>Real-valued function</small>
+						<small>Real-valued step function</small>
 					</div>
 				</div>	
 			</div>
+		</div>
 
+		<div class="col-lg-6 col-md-6 col-sm-12 right">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="real-plane-result">
@@ -78,12 +118,21 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
+
+		<div class="row">
+			<div class="col-lg-12 links">
+				<p><a class="text-center" href="#top">Go to top</a></p>
+				<p><a class="text-center" href="#complex">Complex DFT and IDFT</a></p>
+			</div>
+		</div>
+
+</div>
 
 	</div>
 	</div>
 </body>
+<script src="js/data.js"></script>
 <script src="js/transform.js"></script>
 <script src="js/complex.js"></script>
 <script src="js/real.js"></script>

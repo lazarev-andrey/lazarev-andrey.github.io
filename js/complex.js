@@ -1,6 +1,6 @@
 (function(){
-var extent = 80,
-	width = 800, height = 800,
+var extent = 25,
+	width = 450, height = 450,
 	margin = {top:10, left:10, bottom:10, right:10},
 	plotWidth = width-(margin.left+margin.right),
 	plotHeight = height-(margin.top+margin.bottom);
@@ -20,8 +20,8 @@ var yAxis = d3.svg.axis().scale(scaleY)
 
 var svg = d3.select('.complex-plane').append('svg')
 	.attr({
-		width:800,
-		height:800
+		width:450,
+		height:450
 	})
 	.append('g')
 	.attr('transform','translate('+margin.left+','+margin.top+')')
@@ -48,19 +48,11 @@ function update(){
 	realArray = [];
 	imagArray = [];
 
-  for (var i=0, t=128; i<t; i++) {
-    realArray.push(Math.floor(Math.random() * t) - 64);
-    imagArray.push(Math.floor(Math.random() * t) - 64);
+  for (var i=0, t=50; i<t; i++) {
+    realArray.push(Math.floor(Math.random() * t) - 25);
+    imagArray.push(Math.floor(Math.random() * t) - 25);
   };
 
-// var result = [];
-// var len = realArray.length;
-// for (var i = 0; i < len; i++) {
-//   complexPointsValues = {
-//     r: realArray[i],
-//     i: imagArray[i],
-//   };
-// }
 
   var complexPointsValues = [
   n1 = {r: realArray[0], i: imagArray[0]},
@@ -116,93 +108,7 @@ function update(){
   n47 = {r: realArray[46], i: imagArray[46]},
   n48 = {r: realArray[47], i: imagArray[47]},
   n49 = {r: realArray[48], i: imagArray[48]},
-  n50 = {r: realArray[49], i: imagArray[49]},
-
-  n51 = {r: realArray[50], i: imagArray[50]},
-  n52 = {r: realArray[51], i: imagArray[51]},
-  n53 = {r: realArray[52], i: imagArray[52]},
-  n54 = {r: realArray[53], i: imagArray[53]},
-  n55 = {r: realArray[54], i: imagArray[54]},
-  n56 = {r: realArray[55], i: imagArray[55]},
-  n57 = {r: realArray[56], i: imagArray[56]},
-  n58 = {r: realArray[57], i: imagArray[57]},
-  n59 = {r: realArray[58], i: imagArray[58]},
-  n60 = {r: realArray[59], i: imagArray[59]},
-
-  n61 = {r: realArray[60], i: imagArray[60]},
-  n62 = {r: realArray[61], i: imagArray[61]},
-  n63 = {r: realArray[62], i: imagArray[62]},
-  n64 = {r: realArray[63], i: imagArray[63]},
-  n65 = {r: realArray[64], i: imagArray[64]},
-  n66 = {r: realArray[65], i: imagArray[65]},
-  n67 = {r: realArray[66], i: imagArray[66]},
-  n68 = {r: realArray[67], i: imagArray[67]},
-  n69 = {r: realArray[68], i: imagArray[68]},
-  n70 = {r: realArray[69], i: imagArray[69]},
-
-  n71 = {r: realArray[70], i: imagArray[70]},
-  n72 = {r: realArray[71], i: imagArray[71]},
-  n73 = {r: realArray[72], i: imagArray[72]},
-  n74 = {r: realArray[73], i: imagArray[73]},
-  n75 = {r: realArray[74], i: imagArray[74]},
-  n76 = {r: realArray[75], i: imagArray[75]},
-  n77 = {r: realArray[76], i: imagArray[76]},
-  n78 = {r: realArray[77], i: imagArray[77]},
-  n79 = {r: realArray[78], i: imagArray[78]},
-  n80 = {r: realArray[79], i: imagArray[79]},
-
-  n81 = {r: realArray[80], i: imagArray[80]},
-  n82 = {r: realArray[81], i: imagArray[81]},
-  n83 = {r: realArray[82], i: imagArray[82]},
-  n84 = {r: realArray[83], i: imagArray[83]},
-  n85 = {r: realArray[84], i: imagArray[84]},
-  n86 = {r: realArray[85], i: imagArray[85]},
-  n87 = {r: realArray[86], i: imagArray[86]},
-  n88 = {r: realArray[87], i: imagArray[87]},
-  n89 = {r: realArray[88], i: imagArray[88]},
-  n90 = {r: realArray[89], i: imagArray[89]},
-
-  n91 = {r: realArray[90], i: imagArray[90]},
-  n92 = {r: realArray[91], i: imagArray[91]},
-  n93 = {r: realArray[92], i: imagArray[92]},
-  n94 = {r: realArray[93], i: imagArray[93]},
-  n95 = {r: realArray[94], i: imagArray[94]},
-  n96 = {r: realArray[95], i: imagArray[95]},
-  n97 = {r: realArray[96], i: imagArray[96]},
-  n98 = {r: realArray[97], i: imagArray[97]},
-  n99 = {r: realArray[98], i: imagArray[98]},
-  n100 = {r: realArray[99], i: imagArray[99]},  
-
-  n101 = {r: realArray[100], i: imagArray[100]},
-  n102 = {r: realArray[101], i: imagArray[101]},
-  n103 = {r: realArray[102], i: imagArray[102]},
-  n104 = {r: realArray[103], i: imagArray[103]},
-  n105 = {r: realArray[104], i: imagArray[104]},
-  n106 = {r: realArray[105], i: imagArray[105]},
-  n107 = {r: realArray[106], i: imagArray[106]},
-  n108 = {r: realArray[107], i: imagArray[107]},
-  n109 = {r: realArray[108], i: imagArray[108]},
-  n110 = {r: realArray[109], i: imagArray[109]},
-
-  n111 = {r: realArray[110], i: imagArray[110]},
-  n112 = {r: realArray[111], i: imagArray[111]},
-  n113 = {r: realArray[112], i: imagArray[112]},
-  n114 = {r: realArray[113], i: imagArray[113]},
-  n115 = {r: realArray[114], i: imagArray[114]},
-  n116 = {r: realArray[115], i: imagArray[115]},
-  n117 = {r: realArray[116], i: imagArray[116]},
-  n118 = {r: realArray[117], i: imagArray[117]},
-  n119 = {r: realArray[118], i: imagArray[118]},
-  n120 = {r: realArray[119], i: imagArray[119]},  
-
-  n121 = {r: realArray[120], i: imagArray[120]},
-  n122 = {r: realArray[121], i: imagArray[121]},
-  n123 = {r: realArray[122], i: imagArray[122]},
-  n124 = {r: realArray[123], i: imagArray[123]},  
-  n125 = {r: realArray[124], i: imagArray[124]},
-  n126 = {r: realArray[125], i: imagArray[125]},
-  n127 = {r: realArray[126], i: imagArray[126]},
-  n128 = {r: realArray[127], i: imagArray[127]},  
+  n50 = {r: realArray[49], i: imagArray[49]}  
 	];
 
 	var complexPointsData = [
@@ -259,93 +165,7 @@ function update(){
     { p:n47, id:'n47' },
     { p:n48, id:'n48' },
     { p:n49, id:'n49' },
-    { p:n50, id:'n50' },
-
-    { p:n51, id:'n51' },
-    { p:n52, id:'n52' },
-    { p:n53, id:'n53' },
-    { p:n54, id:'n54' },
-    { p:n55, id:'n55' },
-    { p:n56, id:'n56' },
-    { p:n57, id:'n57' },
-    { p:n58, id:'n58' },
-    { p:n59, id:'n59' },
-    { p:n60, id:'n60' },
-
-    { p:n61, id:'n61' },
-    { p:n62, id:'n62' },
-    { p:n63, id:'n63' },
-    { p:n64, id:'n64' },
-    { p:n65, id:'n65' },
-    { p:n66, id:'n66' },
-    { p:n67, id:'n67' },
-    { p:n68, id:'n68' },
-    { p:n69, id:'n69' },
-    { p:n70, id:'n70' },
-
-    { p:n71, id:'n71' },
-    { p:n72, id:'n72' },
-    { p:n73, id:'n73' },
-    { p:n74, id:'n74' },
-    { p:n75, id:'n75' },
-    { p:n76, id:'n76' },
-    { p:n77, id:'n77' },
-    { p:n78, id:'n78' },
-    { p:n79, id:'n79' },
-    { p:n80, id:'n80' },
-
-    { p:n81, id:'n81' },
-    { p:n82, id:'n82' },
-    { p:n83, id:'n83' },
-    { p:n84, id:'n84' },
-    { p:n85, id:'n85' },
-    { p:n86, id:'n86' },
-    { p:n87, id:'n87' },
-    { p:n88, id:'n88' },
-    { p:n89, id:'n89' },
-    { p:n90, id:'n90' },
-
-    { p:n91, id:'n91' },
-    { p:n92, id:'n92' },
-    { p:n93, id:'n93' },
-    { p:n94, id:'n94' },
-    { p:n95, id:'n95' },
-    { p:n96, id:'n96' },
-    { p:n97, id:'n97' },
-    { p:n98, id:'n98' },
-    { p:n99, id:'n99' },
-    { p:n100, id:'n100' },
-
-    { p:n101, id:'n101' },
-    { p:n102, id:'n102' },
-    { p:n103, id:'n103' },
-    { p:n104, id:'n104' },
-    { p:n105, id:'n105' },
-    { p:n106, id:'n106' },
-    { p:n107, id:'n107' },
-    { p:n108, id:'n108' },
-    { p:n109, id:'n109' },
-    { p:n110, id:'n110' },
-
-    { p:n111, id:'n111' },
-    { p:n112, id:'n112' },
-    { p:n113, id:'n113' },
-    { p:n114, id:'n114' },
-    { p:n115, id:'n115' },
-    { p:n116, id:'n116' },
-    { p:n117, id:'n117' },
-    { p:n118, id:'n118' },
-    { p:n119, id:'n119' },
-    { p:n120, id:'n120' },
-
-    { p:n121, id:'n121' },
-    { p:n122, id:'n122' },
-    { p:n123, id:'n123' },
-    { p:n124, id:'n124' },
-    { p:n125, id:'n125' },
-    { p:n126, id:'n126' },
-    { p:n127, id:'n127' },
-    { p:n128, id:'n128' },
+    { p:n50, id:'n50' }
 	];
 
 	points.selectAll('circle').data(complexPointsData, function(d){return d.id})
