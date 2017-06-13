@@ -1,5 +1,3 @@
-// inputArray = [-1,1,-1,1,-1,1,-1,1]
-
 // var dft = function() {
 //     // var inputArray = [-1,1,-1,1,-1,1,-1,1]
 //     var len = inputArray.length;
@@ -14,7 +12,6 @@
 //    }
 //    output.push(real)
 //  } 
-// console.log(output);
 // return output;
 // };
 
@@ -33,7 +30,6 @@
 //     out = out/len;
 //     inverseOutput.push(out);
 // }
-// console.log(inverseOutput)
 // return inverseOutput;
 // };
 
